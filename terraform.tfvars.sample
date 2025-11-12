@@ -1,0 +1,31 @@
+These values are used by the variables.tf of each environment directory
+Please be properly aligned with what variables are you going to use for 
+the project.
+
+# Required
+project_name                    = "" (Required)
+aws_profile                     = "" (Required)
+state_lock_region               = "" (Required)
+shopify_admin_access_token      = "" (Required)
+shopify_storefront_access_token = "" (Required)
+shopify_base_url                = "" (Required)
+octopus_api_username            = "" (Required)
+octopus_api_password            = "" (Required)
+octopus_api_auth                = "" (Required)
+octopus_base_url                = "" (Required)
+jwt_secret                      = "" (Required)
+jwt_refresh_expiry_day          = "" (Required)
+jwt_algo                        = "" (Required)
+rsa_private_base_64             = "" (Required)
+strapi_api_auth                 = "" (Required)
+strapi_cms_base_url             = "" (Required)
+pinpoint_project_id             = "" (Required)
+
+# Optional, but required if conditions are met
+web_app_acm_certificate_arn     = "" (Optional | Required if using provisioning an EC2 web app)
+strapi_acm_certificate_arn      = "" (Optional | Required if using provisioning an ECS strapi app)
+cloudfront_acm_certificate_arn  = "" (Optional | Required if using S3 cloudfront app)
+
+# Optional
+region                          = "" (Use only if you are aware of its functionality)
+environment                     = "" (Use only if you are aware of its functionality)
