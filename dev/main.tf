@@ -47,15 +47,38 @@ module "lambda-config" {
 }
 
 
-module "api-gateway-vpc-endpoint" {
+module "execute_api_vpc_endpoint" {
   source = "../modules/api-gateway-vpc-endpoint"
   common = local.common
   params = {
-    vpc_id             = var.vpc_id
-    subnet_ids         = var.private_subnet_ids
-    security_group_ids = var.security_group_ids
+    service_name_suffix = "execute-api"
+    vpc_id              = var.vpc_id
+    subnet_ids          = var.private_subnet_ids
+    security_group_ids  = var.security_group_ids
   }
 }
+
+module "logs_vpc_endpoint" {
+  source = "../modules/api-gateway-vpc-endpoint"
+  common = local.common
+  params = {
+    service_name_suffix = "logs"
+    vpc_id              = var.vpc_id
+    subnet_ids          = var.private_subnet_ids
+    security_group_ids  = var.security_group_ids
+  }
+}
+module "monitoring_vpc_endpoint" {
+  source = "../modules/api-gateway-vpc-endpoint"
+  common = local.common
+  params = {
+    service_name_suffix = "monitoring"
+    vpc_id              = var.vpc_id
+    subnet_ids          = var.private_subnet_ids
+    security_group_ids  = var.security_group_ids
+  }
+}
+
 
 
 # Centralized bucket for storing all necesarry objects
@@ -76,9 +99,6 @@ module "s3-serverless-artifacts" {
 module "s3-assets-storage" {
   source = "../modules/s3-public-storage"
   common = local.common
-  variables = {
-    add_bucket_policy = false
-  }
 }
 
 # Cognito for authentication
