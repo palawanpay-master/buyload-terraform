@@ -122,7 +122,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Sid    = "CloudWatchPolicy",
         Effect = "Allow",
         Action = [
-          "cloudwatch:PutMetricData",
+          "cloudwatch:*",
         ],
         Resource = "*"
       },
