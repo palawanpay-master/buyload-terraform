@@ -96,6 +96,14 @@ module "s3-serverless-artifacts" {
   bucket_name          = "serverless-artifacts"
   common               = local.common
 }
+
+module "s3-policy-bucket" {
+  source               = "../modules/s3-private-storage"
+  create_ssm_parameter = true
+  bucket_name          = "policy-bucket"
+  common               = local.common
+}
+
 module "s3-assets-storage" {
   source = "../modules/s3-public-storage"
   common = local.common
@@ -103,8 +111,12 @@ module "s3-assets-storage" {
 
 # Cognito for authentication
 module "cognito-user-pool" {
-  source = "../modules/cognito-admin"
-  common = local.common
+  source                      = "../modules/cognito-admin"
+  common                      = local.common
+  microsoft_saml_metadata_url = var.microsoft_saml_metadata_url
+  cognito_domain_prefix       = var.cognito_domain_prefix
+  cognito_callback_urls       = var.cognito_callback_urls
+  cognito_logout_urls         = var.cognito_logout_urls
 }
 
 module "external-ssm-parameters" {
