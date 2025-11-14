@@ -11,9 +11,10 @@ variable "common" {
 
 variable "params" {
   type = object({
-    vpc_id             = string
-    subnet_ids         = list(string)
-    security_group_ids = list(string)
+    service_name_suffix = string
+    vpc_id              = string
+    subnet_ids          = list(string)
+    security_group_ids  = list(string)
   })
 }
 

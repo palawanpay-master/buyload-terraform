@@ -1,10 +1,10 @@
 # SSM Parameters
 # Defined project configurations
-resource "aws_ssm_parameter" "execute_api_vpce_id" {
-  name        = "/${var.common.project_name}/${var.common.environment}/network/vpce/execute-api/id"
-  description = "API Gateway (execute-api) VPC Endpoint ID"
+resource "aws_ssm_parameter" "custom_vpc_endpoint_id" {
+  name        = "/${var.common.project_name}/${var.common.environment}/network/vpce/${var.params.service_name_suffix}/id"
+  description = "Custom VPC Endpoint ID"
   type        = "String"
-  value       = aws_vpc_endpoint.execute_api.id
+  value       = aws_vpc_endpoint.custom_vpc_endpoint.id
 
   tags = {
     Environment      = var.common.environment

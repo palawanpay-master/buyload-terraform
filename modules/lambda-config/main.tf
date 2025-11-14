@@ -119,6 +119,14 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Resource = "*"
       },
       {
+        Sid    = "CognitoPolicy",
+        Effect = "Allow",
+        Action = [
+          "cognito-idp:*",
+        ],
+        Resource = "*"
+      },
+      {
         Sid    = "CloudWatchPolicy",
         Effect = "Allow",
         Action = [

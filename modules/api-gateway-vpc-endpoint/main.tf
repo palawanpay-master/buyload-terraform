@@ -1,6 +1,6 @@
-resource "aws_vpc_endpoint" "execute_api" {
+resource "aws_vpc_endpoint" "custom_vpc_endpoint" {
   vpc_id              = var.params.vpc_id
-  service_name        = "com.amazonaws.${var.common.region}.execute-api"
+  service_name        = "com.amazonaws.${var.common.region}.${var.params.service_name_suffix}"
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
 
@@ -8,7 +8,7 @@ resource "aws_vpc_endpoint" "execute_api" {
   security_group_ids = var.params.security_group_ids
 
   tags = {
-    Name             = "${var.common.project_name}-${var.common.environment}-vpce-execute-api"
+    Name             = "${var.common.project_name}-${var.common.environment}-vpce-${var.params.service_name_suffix}"
     Environment      = var.common.environment
     Project          = var.common.project_name
     TerraformManaged = true

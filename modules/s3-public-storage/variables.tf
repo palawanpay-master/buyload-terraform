@@ -8,9 +8,3 @@ variable "common" {
     region       = string
   })
 }
-
-variable "variables" {
-  type = object({
-    add_bucket_policy = bool
-  })
-}
