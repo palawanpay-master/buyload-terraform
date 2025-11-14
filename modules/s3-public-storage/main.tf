@@ -40,7 +40,7 @@ resource "aws_s3_bucket_cors_configuration" "public_bucket_cors" {
 }
 
 resource "aws_cloudfront_origin_access_control" "s3_public_origin_access_control" {
-  name                              = aws_s3_bucket.public_bucket.bucket_regional_domain_name
+  name                              = "s3-public-storage-oac-${var.common.environment}"
   description                       = "Origin Access Policy"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
