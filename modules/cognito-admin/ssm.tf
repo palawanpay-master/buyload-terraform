@@ -34,3 +34,15 @@ resource "aws_ssm_parameter" "admin_user_pool_client_id" {
     TerraformManaged = true
   }
 }
+resource "aws_ssm_parameter" "admin_user_pool_domain" {
+  name        = "/${var.common.project_name}/${var.common.environment}/cognito/admin-user-pool/domain"
+  description = "Cognito Admin User Pool Domain"
+  type        = "String"
+  value       = "https://${var.cognito_domain_prefix}.auth.${var.common.region}.amazoncognito.com "
+
+  tags = {
+    Environment      = var.common.environment
+    Project          = var.common.project_name
+    TerraformManaged = true
+  }
+}
